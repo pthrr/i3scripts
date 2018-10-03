@@ -3,10 +3,10 @@
 import re
 import logging
 import subprocess as proc
-from collections import namedtuple
+from recordclass import recordclass
 
 # A type that represents a parsed workspace "name".
-NameParts = namedtuple('NameParts', ['num', 'shortname', 'icons'])
+NameParts = recordclass('NameParts', ['num', 'shortname', 'icons'])
 
 
 def focused_workspace(i3):

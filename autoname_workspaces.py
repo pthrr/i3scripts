@@ -52,30 +52,19 @@ WINDOW_ICONS = {
     'atom': fa.icons['code'],
     'banshee': fa.icons['play'],
     'cura': fa.icons['cube'],
-    'darktable': fa.icons['image'],
-    'evince': fa.icons['file-pdf'],
-    'feh': fa.icons['image'],
     'firefox': fa.icons['firefox'],
     'google-chrome': fa.icons['chrome'],
-    'gpick': fa.icons['eye-dropper'],
-    'imv': fa.icons['image'],
     'keybase': fa.icons['key'],
     'kicad': fa.icons['microchip'],
     'kitty': fa.icons['terminal'],
-    'libreoffice': fa.icons['file-alt'],
-    'mpv': fa.icons['tv'],
-    'mupdf': fa.icons['file-pdf'],
     'openscad': fa.icons['cube'],
     'postman': fa.icons['space-shuttle'],
     'slack': fa.icons['slack'],
     'spotify': fa.icons['music'],  # could also use the 'spotify' icon
     'steam': fa.icons['steam'],
-    'subl': fa.icons['file-alt'],
-    'subl3': fa.icons['file-alt'],
-    'thunar': fa.icons['copy'],
     'thunderbird': fa.icons['envelope'],
     'urxvt': fa.icons['terminal'],
-    'xfce4-terminal': fa.icons['terminal'],
+    'gnome-terminal': fa.icons['terminal'],
     'zenity': fa.icons['window-maximize'],
 }
 
@@ -114,7 +103,7 @@ def rename_workspaces(i3):
         ws_info = ws_infos[ws_index]
 
         name_parts = parse_workspace_name(workspace.name)
-        new_icons = ' '.join([icon_for_window(w) for w in workspace.leaves()])
+        name_parts[2] = ' '.join([icon_for_window(w) for w in workspace.leaves()])
 
         # As we enumerate, leave one gap in workspace numbers between each monitor.
         # This leaves a space to insert a new one later.
@@ -123,12 +112,10 @@ def rename_workspaces(i3):
         prev_output = ws_info.output
 
         # renumber workspace
-        new_num = n
+        name_parts[0] = n
         n += 1
 
-        new_name = construct_workspace_name(
-            NameParts(
-                num=new_num, shortname=name_parts.shortname, icons=new_icons))
+        new_name = construct_workspace_name(name_parts)
         if workspace.name == new_name:
             continue
         i3.command(
