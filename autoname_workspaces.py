@@ -48,24 +48,14 @@ from util import *
 # xprop (https://linux.die.net/man/1/xprop). Run `xprop | grep WM_CLASS`
 # then click on the application you want to inspect.
 WINDOW_ICONS = {
-    'alacritty': fa.icons['terminal'],
-    'atom': fa.icons['code'],
-    'banshee': fa.icons['play'],
-    'cura': fa.icons['cube'],
     'firefox': fa.icons['firefox'],
-    'google-chrome': fa.icons['chrome'],
-    'keybase': fa.icons['key'],
+    'jdownloader': fa.icons['download'],
+    'nautilus': fa.icons['folder'],
+    'chromium-browser': fa.icons['chrome'],
+    'joplin': fa.icons['sticky-note'],
     'kicad': fa.icons['microchip'],
-    'kitty': fa.icons['terminal'],
-    'openscad': fa.icons['cube'],
-    'postman': fa.icons['space-shuttle'],
-    'slack': fa.icons['slack'],
-    'spotify': fa.icons['music'],  # could also use the 'spotify' icon
-    'steam': fa.icons['steam'],
     'thunderbird': fa.icons['envelope'],
-    'urxvt': fa.icons['terminal'],
     'gnome-terminal': fa.icons['terminal'],
-    'zenity': fa.icons['window-maximize'],
 }
 
 # This icon is used for any application not in the list above
