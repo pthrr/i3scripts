@@ -52,7 +52,7 @@ WINDOW_ICONS = {
     'jdownloader': fa.icons['download'],
     'nautilus': fa.icons['folder'],
     'chromium-browser': fa.icons['chrome'],
-    'joplin': fa.icons['sticky-note'],
+    'joplin': fa.icons['book'],
     'kicad': fa.icons['microchip'],
     'thunderbird': fa.icons['envelope'],
     'gnome-terminal': fa.icons['terminal'],
@@ -93,7 +93,11 @@ def rename_workspaces(i3):
         ws_info = ws_infos[ws_index]
 
         name_parts = parse_workspace_name(workspace.name)
-        name_parts[2] = ' '.join([icon_for_window(w) for w in workspace.leaves()])
+
+        if name_parts[1] is None: # if not named, set icons
+            name_parts[2] = ' '.join([icon_for_window(w) for w in workspace.leaves()])
+        else:
+            name_parts[2] = None
 
         # As we enumerate, leave one gap in workspace numbers between each monitor.
         # This leaves a space to insert a new one later.
@@ -143,7 +147,7 @@ if __name__ == '__main__':
 
     # Call rename_workspaces() for relevant window events
     def event_handler(i3, e):
-        if e.change in ['new', 'close', 'move']:
+        if e.change in ['new', 'close', 'move', 'rename']:
             rename_workspaces(i3)
 
     i3.on('window', event_handler)

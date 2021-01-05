@@ -64,7 +64,7 @@ def rename_workspace(new_shortname=None):
         NameParts(
             num=name_parts.num,
             shortname=new_shortname,
-            icons=name_parts.icons))
+            icons=None)) # if name is present, discard icons
     workspace = focused_workspace(i3)
     res = i3.command(
         'rename workspace "%s" to "%s"' % (workspace.name, new_name))
