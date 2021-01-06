@@ -94,7 +94,7 @@ def rename_workspaces(i3):
 
         name_parts = parse_workspace_name(workspace.name)
 
-        if name_parts[1] is None: # if not named, set icons
+        if name_parts[1] == None: # if not named, set icons
             name_parts[2] = ' '.join([icon_for_window(w) for w in workspace.leaves()])
         else:
             name_parts[2] = None
@@ -152,4 +152,5 @@ if __name__ == '__main__':
 
     i3.on('window', event_handler)
     i3.on('workspace::move', event_handler)
+    i3.on('workspace::rename', event_handler)
     i3.main()
